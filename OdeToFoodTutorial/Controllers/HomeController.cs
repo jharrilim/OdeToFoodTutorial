@@ -4,6 +4,7 @@ using OdeToFoodTutorial.ViewModels;
 
 namespace OdeToFoodTutorial.Controllers
 {
+	[Route("[controller]/[action]/{id?}")]
     public class HomeController : Controller
     {
 		private IRestaurantData _restaurantData;
@@ -20,6 +21,14 @@ namespace OdeToFoodTutorial.Controllers
 			var model = new HomePageViewModel();
 			model.Restaurants = _restaurantData.GetAllRestaurants();
 			model.Motd = _greeter.GetGreeting();
+			return View(model);
+		}
+
+		public IActionResult Details(int id)
+		{
+			var model = _restaurantData.Get(id);
+			if (model == null)
+				return RedirectToAction(nameof(Index));
 			return View(model);
 		}
     }

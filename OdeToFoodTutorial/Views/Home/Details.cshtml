@@ -1,0 +1,17 @@
+﻿@using OdeToFoodTutorial.Controllers
+@model OdeToFoodTutorial.Entities.Restaurant
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>@Model.Name</title>
+</head>
+<body>
+	<h1>@Model.Name</h1>
+
+	<div>
+
+	</div>
+	<div>
+		@Html.ActionLink("Home", nameof(HomeController.Index))
+	</div>
+</body>
+</html>
