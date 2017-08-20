@@ -1,21 +1,23 @@
 ﻿@model OdeToFoodTutorial.ViewModels.HomePageViewModel
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<title>Ode To Food</title>
-</head>
-<body>
-	<h1>Message of the Day: @Model.Motd</h1>
-	<h2>List of Restaurants</h2>
-	<table>
-		@foreach (var restaurant in Model.Restaurants)
-		{
-			<tr>
-				<td>
-					@Html.ActionLink("View", "Details", new { id = restaurant.Id })
-				</td>
-				<td>@restaurant.Name</td>
-			</tr>
-		}
-	</table>
-</body>
-</html>
+
+@{ 
+	ViewBag.Title = "Home";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List of Restaurants</h2>
+<table>
+	@foreach (var restaurant in Model.Restaurants)
+	{
+		<tr>
+			<td>
+				@Html.ActionLink("View", "Details", new { id = restaurant.Id })
+			</td>
+			<td>@restaurant.Name</td>
+		</tr>
+	}
+</table>
+
+@section footer {
+	<h4>@Model.Motd</h4>
+}
