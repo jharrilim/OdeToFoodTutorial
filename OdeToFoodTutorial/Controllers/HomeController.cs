@@ -49,7 +49,7 @@ namespace OdeToFoodTutorial.Controllers
 			};
 
 			restaurant = _restaurantData.Add(restaurant);
-			return View("Details", restaurant);
+			return RedirectToAction("Details", new { id = restaurant.Id });
 		}
     }
 }
