@@ -1,8 +1,6 @@
 ﻿using OdeToFoodTutorial.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace OdeToFoodTutorial.Services
 {
@@ -12,6 +10,33 @@ namespace OdeToFoodTutorial.Services
 		IEnumerable<Restaurant> GetAllRestaurants();
 		Restaurant Get(int id);
 		Restaurant Add(Restaurant restaurant);
+	}
+
+	public class SqlRestaurantData : IRestaurantData
+	{
+		private OdeToFoodDbContext _context;
+
+		public SqlRestaurantData(OdeToFoodDbContext ctx)
+		{
+			_context = ctx;
+		}
+
+		public Restaurant Add(Restaurant restaurant)
+		{
+			_context.Add(restaurant);
+			_context.SaveChanges();
+			return restaurant;
+		}
+
+		public Restaurant Get(int id)
+		{
+			return _context.Restaurants.FirstOrDefault(r => r.Id == id);
+		}
+
+		public IEnumerable<Restaurant> GetAllRestaurants()
+		{
+			return _context.Restaurants;
+		}
 	}
 
 	public class InMemoryRestaurantData : IRestaurantData

@@ -5,7 +5,6 @@ using OdeToFoodTutorial.ViewModels;
 
 namespace OdeToFoodTutorial.Controllers
 {
-	[Route("[controller]/[action]/{id?}")]
     public class HomeController : Controller
     {
 		private IRestaurantData _restaurantData;
