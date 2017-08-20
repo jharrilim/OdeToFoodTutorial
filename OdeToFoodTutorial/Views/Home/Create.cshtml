@@ -1,0 +1,29 @@
+﻿@using OdeToFoodTutorial.Entities
+@model Restaurant
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title></title>
+</head>
+<body>
+	<div>
+		<h1>Create</h1>
+		<div>
+			@using (Html.BeginForm())
+			{
+				<div>
+					@Html.LabelFor(m => m.Name)
+					@Html.TextBoxFor(m => m.Name)
+				</div>
+				<div>
+					@Html.LabelFor(m => m.Cuisine)
+					@Html.DropDownListFor(m => m.Cuisine, Html.GetEnumSelectList(typeof(CuisineType)))
+				</div>
+				<div>
+					<input type="submit" value="Save"/>
+				</div>
+			}
+		</div>
+	</div>
+</body>
+</html>

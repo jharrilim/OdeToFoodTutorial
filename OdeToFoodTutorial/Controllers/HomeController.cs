@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OdeToFoodTutorial.Entities;
 using OdeToFoodTutorial.Services;
 using OdeToFoodTutorial.ViewModels;
 
@@ -30,6 +31,25 @@ namespace OdeToFoodTutorial.Controllers
 			if (model == null)
 				return RedirectToAction(nameof(Index));
 			return View(model);
+		}
+
+		[HttpGet]
+		public IActionResult Create()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public IActionResult Create(RestaurantEditViewModel model)
+		{
+			var restaurant = new Restaurant()
+			{
+				Cuisine = model.Cuisine,
+				Name = model.Name
+			};
+
+			restaurant = _restaurantData.Add(restaurant);
+			return View("Details", restaurant);
 		}
     }
 }
