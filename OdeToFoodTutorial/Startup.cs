@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,6 +8,7 @@ using Microsoft.AspNetCore.Routing;
 using OdeToFoodTutorial.Services;
 using OdeToFoodTutorial.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace OdeToFoodTutorial
 {
@@ -38,6 +35,8 @@ namespace OdeToFoodTutorial
 			services.AddScoped<IRestaurantData, SqlRestaurantData>();
 			services.AddDbContext<OdeToFoodDbContext>(options => 
 				options.UseSqlServer(Configuration.GetConnectionString("OdeToFood")));
+			services.AddIdentity<User, IdentityRole>()
+				.AddEntityFrameworkStores<OdeToFoodDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +57,9 @@ namespace OdeToFoodTutorial
 			}
 
 			app.UseFileServer();
+
+			// Deprecated: app.UseIdentity();
+			app.UseAuthentication();
 
 			app.UseMvc(ConfigureRoutes);
 
