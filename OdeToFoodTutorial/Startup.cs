@@ -58,6 +58,8 @@ namespace OdeToFoodTutorial
 
 			app.UseFileServer();
 
+			app.UseNodeModules(env.ContentRootPath);
+
 			// Deprecated: app.UseIdentity();
 			app.UseAuthentication();
 
