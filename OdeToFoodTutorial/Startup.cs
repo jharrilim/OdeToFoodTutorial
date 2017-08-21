@@ -64,8 +64,6 @@ namespace OdeToFoodTutorial
 			app.UseAuthentication();
 
 			app.UseMvc(ConfigureRoutes);
-
-			app.Run(ctx => ctx.Response.WriteAsync("Not Found"));
         }
 
 		private void ConfigureRoutes(IRouteBuilder routeBuilder)
